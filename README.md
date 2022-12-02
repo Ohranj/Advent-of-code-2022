@@ -1,9 +1,9 @@
 # Advent-of-code-2022
 My Attemps for this years Advent of Code event
 
-You can run these via the following:
+You can open a ubuntu image and run these via the following approach:
 ```
-docker build -t node .
-docker run -it node bash
+docker compose up -d --build
+docker compose exec -it node bash
 node [js file]
 ```

@@ -1,11 +1,15 @@
-FROM ubuntu:latest
+FROM node:18.12.1
 
-RUN apt-get -y update && apt-get -y install \ 
-    vim \ 
-    curl
+#Install system dependencies
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y \
+    curl \
+    vim
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && apt-get install -y nodejs
 
-COPY . ./home/aoc
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /home/aoc
+
+# Create system user to run Composer and Artisan Commands
+RUN mkdir -p /home/alex/aoc
