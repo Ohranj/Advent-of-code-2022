@@ -9,10 +9,7 @@ let sliceLength = 4;
 
 for (let i = 0; i <= bufferStream.length - sliceLength; i++) {
     const sliceEnd = i + sliceLength;
-    const total = [... bufferStream.slice(i, sliceEnd)].reduce((acc, c, i, arr) => {
-        if (!acc[c]) acc[c] = 1;
-        return i == arr.length - 1 ? Object.keys(acc).length : acc;
-    }, {})
+    const total = new Set([...bufferStream.slice(i, sliceEnd)]).size
     if (total < sliceLength) continue;
     marker = sliceEnd;
     break;
@@ -28,10 +25,7 @@ sliceLength = 14;
 
 for (let i = 0; i <= bufferStream.length - sliceLength; i++) {
     const sliceEnd = i + sliceLength;
-    const total = [... bufferStream.slice(i, sliceEnd)].reduce((acc, c, i, arr) => {
-        if (!acc[c]) acc[c] = 1;
-        return i == arr.length - 1 ? Object.keys(acc).length : acc;
-    }, {})
+    const total = new Set([...bufferStream.slice(i, sliceEnd)]).size
     if (total < sliceLength) continue;
     marker = sliceEnd;
     break;
